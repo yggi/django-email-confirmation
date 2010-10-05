@@ -84,7 +84,7 @@ class EmailConfirmationManager(models.Manager):
         if not confirmation.key_expired():
             email_address = confirmation.email_address
             email_address.verified = True
-            email_address.set_as_primary(conditional=True)
+            email_address.set_as_primary(conditional=False)
             email_address.save()
             email_confirmed.send(sender=self.model, email_address=email_address)
             return email_address
